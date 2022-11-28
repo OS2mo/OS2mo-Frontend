@@ -334,6 +334,7 @@ export default {
       ]
 
       // Tap tester 1
+      // Tap tester 2
 
       if (conf.association_dynamic_facets) {
         let dynamics = conf.association_dynamic_facets
