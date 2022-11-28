@@ -333,6 +333,16 @@ export default {
         { label: "third_party_association_type", data: "third_party_association_type" },
       ]
 
+      // Hide columns if configured to be so, in feature flag
+      const hide_cols = conf.employee_hide_association_columns
+      if (Array.isArray(hide_cols) && hide_cols.length > 0) {
+        for (let i = 0; i < columns.length; i++) {
+          if (hide_cols.indexOf(columns[i].data) > -1) {
+            columns.splice(i, 1)
+          }
+        }
+      }
+
       if (conf.association_dynamic_facets) {
         let dynamics = conf.association_dynamic_facets
           .split(",")
