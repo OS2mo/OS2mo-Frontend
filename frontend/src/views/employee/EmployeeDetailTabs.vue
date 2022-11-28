@@ -333,6 +333,8 @@ export default {
         { label: "third_party_association_type", data: "third_party_association_type" },
       ]
 
+      // Tap tester 1
+
       if (conf.association_dynamic_facets) {
         let dynamics = conf.association_dynamic_facets
           .split(",")
