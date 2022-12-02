@@ -42,6 +42,7 @@
   "manager_address_type": "@:shared.address_type",
   "org_unit_address_type": "@:shared.address_type",
   "org_unit_level": "@:shared.org_unit_level",
+  "org_unit_hierarchy": "@shared.org_unit_hierarchy",
   "employee_address_type": "@:shared.address_type",
   "manager_responsibility": "@:shared.manager_responsibility",
   "select_unit": "Specify unit",

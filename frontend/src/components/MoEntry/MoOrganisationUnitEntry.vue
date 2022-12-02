@@ -44,6 +44,7 @@ SPDX-FileCopyrightText: 2018-2020 Magenta ApS SPDX-License-Identifier: MPL-2.0
         :filter_function="filter_on_owner"
         required
       />
+      <mo-facet-picker :facet="unitHierarchyFacet" v-model="entry.org_unit_hierarchy" :label=null required />
     </div>
   </div>
 </template>
@@ -56,6 +57,7 @@ import MoOrganisationUnitPicker from "@/components/MoPicker/MoOrganisationUnitPi
 import MoFacetPicker from "@/components/MoPicker/MoFacetPicker"
 import { MoInputText, MoInputDateRange } from "@/components/MoInput"
 import MoEntryBase from "./MoEntryBase"
+import { Facet } from "@/store/actions/facet"
 
 export default {
   extends: MoEntryBase,
@@ -116,6 +118,18 @@ export default {
       }
       return this.globalOrgUnitLevel
     },
+    unitHierarchyFacet() {
+      // Ask backend if an "org_unit_hierarchy" facet exists
+      let facet = this.$store.getters[Facet.getters.GET_FACET]("org_unit_hierarchy")
+
+      if (Object.keys(facet).length) {
+        // If it does, it contains the user-facing job titles, and we should use it
+        return "org_unit_hierarchy"
+      } else {
+        // If not, we should use the regular job title classes instead
+        return ""
+      }
+    },
     showUserKey() {
       return !this.isEdit
     },
@@ -132,7 +146,12 @@ export default {
       return return_val
     },
   },
-
+  mounted() {
+    // Dispatch backend request to check if facet "org_unit_hierarchy" exists
+    this.$store.dispatch(Facet.actions.SET_FACET, {
+      facet: "org_unit_hierarchy",
+    })
+  },
   watch: {
     /**
      * Whenever orgUnit change, update newVal.

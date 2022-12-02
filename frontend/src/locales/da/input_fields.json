@@ -26,6 +26,7 @@
   "org_unit_type": "@:shared.org_unit_type",
   "org_unit_user_key": "Enhedsnummer",
   "org_unit_user_key_placeholder": "Udfyld eller auto",
+  "org_unit_hierarchy": "Enheds hierarki",
   "primary": "@:shared.primary",
   "primary_type": "@:shared.primary",
   "time_planning": "@:shared.time_planning",
