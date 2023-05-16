@@ -75,12 +75,7 @@ export default {
      * closest allowed value.
      */
     initialValue() {
-      let currentDate = this.internalValue ? new Date(this.internalValue) : new Date()
-      let disabled = this.disabledDates
-
-      if (disabled.to && currentDate <= disabled.to) return disabled.to
-      else if (disabled.from && currentDate < disabled.from) return disabled.from
-      else return currentDate
+      return this.internalValue ? new Date(this.internalValue) : new Date()
     },
 
     /**
