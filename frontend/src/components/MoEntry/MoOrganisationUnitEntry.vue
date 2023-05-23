@@ -3,7 +3,7 @@ SPDX-FileCopyrightText: 2018-2020 Magenta ApS SPDX-License-Identifier: MPL-2.0
   <div>
     <mo-input-date-range
       v-model="entry.validity"
-      :disabled-dates="{ orgUnitValidity, disabledDates }"
+      :disabled-dates="{ orgUnitValidity }"
     />
 
     <mo-organisation-unit-picker
@@ -90,6 +90,11 @@ export default {
      * This boolean property able the date in create organisation component.
      */
     creatingDate: Boolean,
+
+    entryValidity: {
+      from: String,
+      to: String,
+    },
   },
 
   computed: {
@@ -99,10 +104,7 @@ export default {
       return conf.show_level
     },
     orgUnitValidity() {
-      if (this.entry.parent) {
-        return this.entry.parent.validity
-      }
-      return this.disabledDates
+      return this.entryValidity ? this.entryValidity : this.disabledDates
     },
     showTimePlanning() {
       if (this.entry.parent) {
@@ -192,7 +194,7 @@ export default {
         })
         min = min ? moment(new Date(min)).format("YYYY-MM-DD") : null
         max = max ? moment(new Date(max)).format("YYYY-MM-DD") : null
-        return (this.entry.parent.validity = { from: min, to: max })
+        return (this.entryValidity = { from: min, to: max })
       })
     },
 
