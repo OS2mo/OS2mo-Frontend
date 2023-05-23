@@ -266,8 +266,8 @@ export default {
         var max = to_validities.reduce(function (a, b) {
           return a > b ? a : b
         })
-        min = min ? moment.utc(new Date(min)).format("YYYY-MM-DD") : null
-        max = max ? moment.utc(new Date(max)).format("YYYY-MM-DD") : null
+        min = min ? moment(new Date(min)).format("YYYY-MM-DD") : null
+        max = max ? moment(new Date(max)).format("YYYY-MM-DD") : null
         return (this.dates = { from: min, to: max })
       })
     },
