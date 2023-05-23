@@ -77,11 +77,6 @@ export default {
     MoFacetPicker,
     MoInputText,
   },
-  data() {
-    return {
-      myDates: {}
-    }
-  },
 
   /**
    * Validator scope, sharing all errors and validation state.
@@ -157,11 +152,9 @@ export default {
      */
     entry: {
       async handler(newVal) {
-        if(newVal.parent.uuid) {
+        if (newVal.parent.uuid) {
           await this.getMinMaxValidities(newVal.parent.uuid)
-          console.log(newVal.parent.validity);
         }
-        console.log(newVal.parent.validity);
         if (newVal.user_key === undefined || newVal.user_key === "") {
           newVal.user_key = null
         }
@@ -199,7 +192,7 @@ export default {
         })
         min = min ? moment(new Date(min)).format("YYYY-MM-DD") : null
         max = max ? moment(new Date(max)).format("YYYY-MM-DD") : null
-        return this.entry.parent.validity = { from: min, to: max }
+        return (this.entry.parent.validity = { from: min, to: max })
       })
     },
 
