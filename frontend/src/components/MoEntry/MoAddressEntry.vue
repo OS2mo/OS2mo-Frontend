@@ -245,6 +245,10 @@ export default {
 
   methods: {
     getMinMaxValidities() {
+      if (!this.entry.org_unit) {
+        return
+      }
+
       let query = `query MyQuery {
           org_units(uuids: "${this.entry.org_unit.uuid}", from_date: null, to_date: null){
             objects {
